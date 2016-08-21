@@ -18,7 +18,7 @@ Template.Login.events({
         return;
       }
 
-      FlowRouter.go('/');
+      FlowRouter.go('user-home');
     });
   },
 });
