@@ -7,10 +7,22 @@ const WorkerSchema = new SimpleSchema({
   owner: {
     type: String,
   },
-  
+
   role: {
     type: String,
     defaultValue: 'harvester',
+  },
+
+  prob_reproduce: {
+    type: Number,
+    defaultValue: 0.02,
+    decimal: true,
+  },
+
+  prob_die: {
+    type: Number,
+    defaultValue: 0.05,
+    decimal: true,
   },
 });
 
