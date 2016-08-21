@@ -16,4 +16,16 @@ Template.UserHome.helpers({
   numberOfWorkers() {
     return Workers.find().count();
   },
+
+  points() {
+    const workers = Workers.find().fetch();
+    let points = 0;
+    _(workers).forEach(function (worker) {
+      if (worker.role === 'harvester') {
+        points += 1;
+      }
+    });
+
+    return points;
+  }
 });

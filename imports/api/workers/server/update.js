@@ -13,4 +13,4 @@ Meteor.setInterval(function () {
       Workers.remove(worker._id);
     }
   });
-}, 2000);
+}, 5 * 60 * 1000);  // update every 5 min
