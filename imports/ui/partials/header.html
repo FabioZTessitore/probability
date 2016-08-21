@@ -9,7 +9,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
+      {{#if currentUser}}
+      <a class="navbar-brand" href="{{pathFor 'user-home'}}">Probability</a>
+      {{else}}
       <a class="navbar-brand" href="{{pathFor 'home-page'}}">Probability</a>
+      {{/if}}
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

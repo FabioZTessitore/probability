@@ -64,7 +64,7 @@ Template.Signup.events({
       }
 
       Meteor.loginWithPassword(userAttributes.username, userAttributes.password1);
-      FlowRouter.go('/');
+      FlowRouter.go('user-home');
     });
   },
 });
