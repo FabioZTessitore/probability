@@ -17,6 +17,12 @@
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        {{#if currentUser}}
+        <li class="{{isActiveRoute 'cities'}}"><a href="{{pathFor 'cities'}}">Cities</a></li>
+        {{/if}}
+      </ul>
+
       <ul class="nav navbar-nav navbar-right">
         {{#if currentUser}}
         <li><a href="#"><button type="button" class="btn btn-default logout"><strong>Logout</strong></button></a></li>
