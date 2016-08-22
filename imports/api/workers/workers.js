@@ -8,6 +8,10 @@ const WorkerSchema = new SimpleSchema({
     type: String,
   },
 
+  city: {
+    type: String,
+  },
+
   role: {
     type: String,
     defaultValue: 'harvester',

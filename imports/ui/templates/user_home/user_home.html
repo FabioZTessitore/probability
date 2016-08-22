@@ -1,6 +1,13 @@
 <template name="UserHome">
   <h1>Welcome in Probability</h1>
 
+  <p>You have these cities:
+    <ul>
+      {{#each cities}}
+      <li>{{name}}</li>
+      {{/each}}
+    </ul>
+  </p>
   <p>You have {{numberOfWorkers}} workers in your village</p>
   <p>Actually your workers are 'harvester'.<br>
     Harvester'life is very hard.<br>
