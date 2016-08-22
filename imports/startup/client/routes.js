@@ -8,6 +8,7 @@ import '../../ui/templates/home/home.js';
 import '../../ui/templates/user_home/user_home.js';
 import '../../ui/layouts/main_layout.js';
 import '../../ui/templates/cities/cities.js';
+import '../../ui/layouts/user_layout.js';
 
 FlowRouter.notFound = {
   action() {
@@ -46,6 +47,6 @@ FlowRouter.route('/login', {
 FlowRouter.route('/home', {
   name: 'user-home',
   action() {
-    BlazeLayout.render('MainLayout', { content: 'UserHome' });
+    BlazeLayout.render('UserLayout', { content: 'UserHome' });
   },
 });
