@@ -7,10 +7,14 @@ const CitySchema = new SimpleSchema({
   owner: {
     type: String,
   },
-  
+
   name: {
     type: String,
     defaultValue: 'New City',
+  },
+
+  workers: {
+    type: Number,
   },
 });
 
