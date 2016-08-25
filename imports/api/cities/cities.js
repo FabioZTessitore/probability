@@ -16,6 +16,22 @@ const CitySchema = new SimpleSchema({
   workers: {
     type: Number,
   },
+
+  wood: {
+    type: Number,
+    defaultValue: 0,
+  },
+
+  wood_production: {
+    type: Number,
+    defaultValue: 1,
+  },
+
+  prob_storage_wood: {
+    type: Number,
+    defaultValue: .50,
+    decimal: true,
+  },
 });
 
 Cities.attachSchema(CitySchema);
