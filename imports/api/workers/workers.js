@@ -28,6 +28,18 @@ const WorkerSchema = new SimpleSchema({
     defaultValue: 0.05,
     decimal: true,
   },
+
+  prob_wood: {
+    type: Number,
+    defaultValue: 0.10,
+    decimal: true,
+  },
+
+  prob_stone: {
+    type: Number,
+    defaultValue: 0.10,
+    decimal: true,
+  },
 });
 
 Workers.attachSchema(WorkerSchema);

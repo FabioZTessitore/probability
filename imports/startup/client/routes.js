@@ -26,7 +26,7 @@ FlowRouter.route('/', {
 FlowRouter.route('/cities', {
   name: 'cities',
   action() {
-    BlazeLayout.render('MainLayout', { content: 'Cities' });
+    BlazeLayout.render('UserLayout', { content: 'Cities' });
   },
 });
 
