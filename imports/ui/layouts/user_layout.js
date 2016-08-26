@@ -21,6 +21,8 @@ Template.UserLayout.onRendered(function () {
       const workers = Workers.find().fetch();
 
       _(workers).forEach(function (worker) {
+        console.log(worker);
+
         const city = Cities.findOne(worker.city);
 
         if (Math.random() < worker.prob_wood) {
@@ -41,6 +43,8 @@ Template.UserLayout.onRendered(function () {
 
         if (Math.random() < worker.prob_die) {
           Meteor.call('workers.remove', worker._id, worker.city);
+        } else {
+          Meteor.call('workers.birthday', worker._id);
         }
       });
     } catch (err) {

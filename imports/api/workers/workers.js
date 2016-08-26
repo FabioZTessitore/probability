@@ -17,16 +17,25 @@ const WorkerSchema = new SimpleSchema({
     defaultValue: 'harvester',
   },
 
+  age: {
+    type: Number,
+    defaultValue: 20,
+  },
+
   prob_reproduce: {
     type: Number,
-    defaultValue: 0.02,
     decimal: true,
+    autoValue: function () {
+      return 1.02 - Math.exp(0.0002 * this.field('age').value);
+    },
   },
 
   prob_die: {
     type: Number,
-    defaultValue: 0.05,
     decimal: true,
+    autoValue: function () {
+      return -1 + 0.05 + Math.exp(0.006 * this.field('age').value);
+    },
   },
 
   prob_wood: {
