@@ -8,6 +8,10 @@ const WorkerSchema = new SimpleSchema({
     type: String,
   },
 
+  city: {
+    type: String,
+  },
+
   role: {
     type: String,
     defaultValue: 'harvester',
@@ -22,6 +26,18 @@ const WorkerSchema = new SimpleSchema({
   prob_die: {
     type: Number,
     defaultValue: 0.05,
+    decimal: true,
+  },
+
+  prob_wood: {
+    type: Number,
+    defaultValue: 0.10,
+    decimal: true,
+  },
+
+  prob_stone: {
+    type: Number,
+    defaultValue: 0.10,
     decimal: true,
   },
 });

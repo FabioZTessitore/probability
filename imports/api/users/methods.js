@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 import { check } from 'meteor/check';
+import { Cities } from '../cities/cities.js';
 import { Workers } from '../workers/workers.js';
 
 Meteor.methods({
@@ -16,9 +17,10 @@ Meteor.methods({
     }
 
     const userId = Accounts.createUser(userAttributes);
+    const firstCityId = Cities.insert({ owner: userId, workers: 100 });
     let i;
     for (i = 0; i < 100; i++) {
-      Workers.insert({ owner: userId });
+      Workers.insert({ owner: userId, city: firstCityId });
     }
 
     return {
