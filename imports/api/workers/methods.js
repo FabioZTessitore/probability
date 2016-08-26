@@ -24,4 +24,11 @@ Meteor.methods({
     Cities.update(city, { $inc: { workers: -1 } });
     Workers.remove(workerId);
   },
+
+  'workers.birthday': function (workerId) {
+    check(this.userId, String);
+    check(workerId, String);
+
+    Workers.update(workerId, { $inc: { age: 1 } });
+  },
 });

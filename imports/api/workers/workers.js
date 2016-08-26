@@ -17,15 +17,24 @@ const WorkerSchema = new SimpleSchema({
     defaultValue: 'harvester',
   },
 
+  age: {
+    type: Number,
+    defaultValue: 20,
+  },
+
   prob_reproduce: {
     type: Number,
-    defaultValue: 0.02,
+    autoValue: function () {
+      return 0.02;
+    },
     decimal: true,
   },
 
   prob_die: {
     type: Number,
-    defaultValue: 0.05,
+    autoValue: function () {
+      return 0.05;
+    },
     decimal: true,
   },
 
