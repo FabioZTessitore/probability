@@ -29,6 +29,12 @@ Template.UserLayout.onRendered(function () {
           }
         }
 
+        if (Math.random() < worker.prob_stone) {
+          if (Math.random() < city.prob_storage_stone) {
+            Meteor.call('cities.update_stone', city._id, city.stone_production);
+          }
+        }
+
         if (Math.random() < worker.prob_reproduce) {
           Meteor.call('workers.insert', worker.owner, worker.city, worker.role);
         }

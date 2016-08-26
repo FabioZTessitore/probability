@@ -10,4 +10,12 @@ Meteor.methods({
 
     Cities.update(city, { $inc: { wood: woodProduction } });
   },
+
+  'cities.update_stone': function (city, stoneProduction) {
+    check(this.userId, String);
+    check(city, String);
+    check(stoneProduction, Number);
+
+    Cities.update(city, { $inc: { stone: stoneProduction } });
+  },
 });
