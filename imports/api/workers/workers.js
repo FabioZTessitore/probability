@@ -24,18 +24,18 @@ const WorkerSchema = new SimpleSchema({
 
   prob_reproduce: {
     type: Number,
-    autoValue: function () {
-      return 0.02;
-    },
     decimal: true,
+    autoValue: function () {
+      return 1.02 - Math.exp(0.0002 * this.field('age').value);
+    },
   },
 
   prob_die: {
     type: Number,
-    autoValue: function () {
-      return 0.05;
-    },
     decimal: true,
+    autoValue: function () {
+      return -1 + 0.05 + Math.exp(0.006 * this.field('age').value);
+    },
   },
 
   prob_wood: {
