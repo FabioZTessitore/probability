@@ -7,3 +7,6 @@ import '../../api/workers/methods.js';
 import '../../api/workers/server/publications.js';
 
 import '../../api/levels/server/publications.js';
+
+import '../../api/buildings/methods.js';
+import '../../api/buildings/server/publications.js';

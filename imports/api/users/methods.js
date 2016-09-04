@@ -3,6 +3,7 @@ import { Accounts } from 'meteor/accounts-base';
 import { check } from 'meteor/check';
 import { Cities } from '../cities/cities.js';
 import { Workers } from '../workers/workers.js';
+import { Buildings } from '../buildings/buildings.js';
 
 Meteor.methods({
   'users.register': function (userAttributes) {
@@ -17,11 +18,13 @@ Meteor.methods({
     }
 
     const userId = Accounts.createUser(userAttributes);
-    const firstCityId = Cities.insert({ owner: userId, workers: 100 });
+    const initialWorkers = 1000;
+    const firstCityId = Cities.insert({ owner: userId, workers: initialWorkers });
     let i;
-    for (i = 0; i < 100; i++) {
+    for (i = 0; i < initialWorkers; i++) {
       Workers.insert({ owner: userId, city: firstCityId });
     }
+    Buildings.insert({ city: firstCityId, type: 'City Hall', level: 0 });
 
     return {
       _id: userId,
