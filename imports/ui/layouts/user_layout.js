@@ -52,5 +52,5 @@ Template.UserLayout.onRendered(function () {
     }
 
   //}, 5 * 60 * 1000);  // update every 5 min
-}, 15000);  // update every 5 sec (debug)
+}, 15000);  // update every 15 sec (debug)
 });

@@ -31,4 +31,13 @@ Meteor.methods({
 
     Workers.update(workerId, { $inc: { age: 1 } });
   },
+
+  'workers.updateProbReproduceDie': function(workerId, changeReproduce, changeDie) {
+    check(this.userId, String);
+    check(workerId, String);
+    check(changeReproduce, Number);
+    check(changeDie, Number);
+
+    Workers.update(workerId, { $inc: { prob_reproduce: changeReproduce, prob_die: changeDie }});
+  }
 });
