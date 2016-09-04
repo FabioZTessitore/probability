@@ -8,6 +8,7 @@ import '../../ui/templates/home/home.js';
 import '../../ui/templates/user_home/user_home.js';
 import '../../ui/layouts/main_layout.js';
 import '../../ui/templates/cities/cities.js';
+import '../../ui/templates/cities/city.js';
 import '../../ui/layouts/user_layout.js';
 
 FlowRouter.notFound = {
@@ -27,6 +28,13 @@ FlowRouter.route('/cities', {
   name: 'cities',
   action() {
     BlazeLayout.render('UserLayout', { content: 'Cities' });
+  },
+});
+
+FlowRouter.route('/city/:id', {
+  name: 'city',
+  action(params) {
+    BlazeLayout.render('UserLayout', { content: 'City' });
   },
 });
 

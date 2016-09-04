@@ -1,0 +1,14 @@
+<template name="City">
+  {{#with city}}
+  <h1>Welcome to {{name}}</h1>
+
+  <p>There are {{workers}} workers</p>
+
+  <p>Resources are:
+    <ul>
+      <li>wood: {{wood}} (production: {{wood_production}}, storage: {{prob_storage_wood}})</li>
+      <li>stone: {{stone}} (production: {{stone_production}}, storage: {{prob_storage_stone}})</li>
+    </ul>
+  </p>
+  {{/with}}
+</template>

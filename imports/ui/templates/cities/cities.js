@@ -1,4 +1,5 @@
 import { Template } from 'meteor/templating';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 
 import { Cities } from '../../../api/cities/cities.js';
 
@@ -14,5 +15,12 @@ Template.Cities.onCreated(function () {
 Template.Cities.helpers({
   cities() {
     return Cities.find();
+  },
+});
+
+Template.Cities.events({
+  'click .cityname': function(event, instance) {
+    const cityId = this._id;
+    FlowRouter.go('city', { id: cityId });
   },
 });
