@@ -7,13 +7,13 @@ const BuildingSchema = new SimpleSchema({
     type: String,
   },
 
+  type: {
+    type: String,
+  },
+
   level: {
     type: Number,
     defaultValue: 0,
-  },
-
-  type: {
-    type: String,
   },
 });
 
