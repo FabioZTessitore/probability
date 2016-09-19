@@ -29,7 +29,7 @@ Meteor.methods({
     check(this.userId, String);
     check(workerId, String);
 
-    Workers.update(workerId, { $inc: { age: 1 } });
+    //Workers.update(workerId, { $inc: { age: 1 } });
   },
 
   'workers.updateProbReproduceDie': function(workerId, changeReproduce, changeDie) {

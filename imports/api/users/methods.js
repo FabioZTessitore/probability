@@ -18,7 +18,7 @@ Meteor.methods({
     }
 
     const userId = Accounts.createUser(userAttributes);
-    const initialWorkers = 1000;
+    const initialWorkers = 10000;
     const firstCityId = Cities.insert({ owner: userId, workers: initialWorkers });
     let i;
     for (i = 0; i < initialWorkers; i++) {

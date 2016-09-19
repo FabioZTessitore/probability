@@ -21,7 +21,7 @@ Template.UserLayout.onRendered(function () {
       const workers = Workers.find().fetch();
 
       _(workers).forEach(function (worker) {
-        //console.log(worker);
+        console.log(worker);
 
         const city = Cities.findOne(worker.city);
 
@@ -51,6 +51,7 @@ Template.UserLayout.onRendered(function () {
       console.log('please investigate if errors occour', err);
     }
 
-  //}, 5 * 60 * 1000);  // update every 5 min
-}, 15000);  // update every 15 sec (debug)
+//  }, 5 * 60 * 1000);  // update every 5 min
+}, 2 * 60 * 1000);  // update every 5 min
+//}, 15000);  // update every 15 sec (debug)
 });

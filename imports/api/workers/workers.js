@@ -4,11 +4,11 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 export const Workers = new Mongo.Collection('workers');
 
 const probReproduce = function(scale, age) {
-  return scale * Math.exp((100-age)/100);
+  return 0.01 * scale * Math.exp((100-age)/100);
 };
 
 const probDie = function(scale, age) {
-  return scale * Math.exp(age/100);
+  return 0.01 * scale * Math.exp(age/100);
 };
 
 
@@ -38,7 +38,7 @@ const WorkerSchema = new SimpleSchema({
 
   scaleProbDie: {   /* min: 1, max: 35 */
     type: Number,
-    defaultValue: 35,
+    defaultValue: 25,
   },
 
   prob_reproduce: {
