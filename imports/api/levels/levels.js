@@ -4,56 +4,50 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 export const Levels = new Mongo.Collection('levels');
 
 const LevelSchema = new SimpleSchema({
-  type: {
+  buildingType: {
     type: String,
   },
 
-  level: {
+  buildingLevel: {
     type: Number,
   },
 
-  stone: {  /* needed to build */
+  stoneNeededToBuild: {
     type: Number,
   },
 
-  wood: {  /* needed to build */
+  woodNeededToBuild: {
     type: Number,
   },
 
-  changeProbReproduce: {
+  changeScaleProbReproduce: {
     type: Number,
-    decimal: true,
-    defaultValue: 0.0,
+    defaultValue: 0,
   },
 
-  changeProbDie: {
+  changeScaleProbDie: {
     type: Number,
-    decimal: true,
-    defaultValue: 0.0,
+    defaultValue: 0,
   },
 
-  prob_wood: {
+  changeScaleProbProduceWood: {
     type: Number,
-    decimal: true,
-    defaultValue: 0.0,
+    defaultValue: 0,
   },
 
-  prob_stone: {
+  changeScaleProbProduceStone: {
     type: Number,
-    decimal: true,
-    defaultValue: 0.0,
+    defaultValue: 0,
   },
 
-  prob_storage_wood: {
+  changeScaleProbStorageWood: {
     type: Number,
-    decimal: true,
-    defaultValue: 0.0,
+    defaultValue: 0,
   },
 
-  prob_storage_stone: {
+  changeScaleProbStorageStone: {
     type: Number,
-    decimal: true,
-    defaultValue: 0.0,
+    defaultValue: 0,
   },
 });
 
