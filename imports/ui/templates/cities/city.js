@@ -28,6 +28,10 @@ Template.City.helpers({
 
 Template.City.events({
   'click .city-hall': function (event, instance) {
+
+    /* TRASFERIRE SUL SERVER GLI AGGIORNAMENTI DELLE COLLEZIONI */
+    /* VEDI BUILDINGS.UPGRADE */
+
     const cityId = FlowRouter.getParam('id');
     const city = Cities.findOne(cityId);
 

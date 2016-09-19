@@ -64,6 +64,7 @@ Template.Signup.events({
       }
 
       Meteor.loginWithPassword(userAttributes.username, userAttributes.password1);
+      Meteor.call('cities.create');
       FlowRouter.go('user-home');
     });
   },
