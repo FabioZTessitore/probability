@@ -38,6 +38,6 @@ Meteor.methods({
     check(changeReproduce, Number);
     check(changeDie, Number);
 
-    Workers.update(workerId, { $inc: { prob_reproduce: changeReproduce, prob_die: changeDie }});
+    Workers.update(workerId, { $inc: { scaleProbReproduce: changeReproduce, scaleProbDie: changeDie }});
   }
 });

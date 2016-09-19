@@ -51,14 +51,7 @@ Template.City.events({
 
       const workers = Workers.find({ city: cityId }).fetch();
       _(workers).forEach(function (worker) {
-        // debug purpose
-        // bisogna modifica lo schema dei workers
-        // e inserire dei parametri modificabili
-        // sembra abbastanza difficile
-        // piu' semplice potrebbe essere
-        // modificare il calcolo delle prob per chi
-        // supera una certa eta'
-        Meteor.call('workers.updateProbReproduceDie', worker._id, /*level.prob_reproduce*/ 0.5, level.prob_die);
+        Meteor.call('workers.updateProbReproduceDie', worker._id, level.changeProbReproduce, level.changeProbDie);
       });
     }
   },

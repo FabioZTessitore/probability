@@ -3,6 +3,15 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
 export const Workers = new Mongo.Collection('workers');
 
+const probReproduce = function(scale, age) {
+  return scale * Math.exp((100-age)/100);
+};
+
+const probDie = function(scale, age) {
+  return scale * Math.exp(age/100);
+};
+
+
 const WorkerSchema = new SimpleSchema({
   owner: {
     type: String,
@@ -22,11 +31,21 @@ const WorkerSchema = new SimpleSchema({
     defaultValue: 20,
   },
 
+  scaleProbReproduce: {   /* min: 1, max: 35 */
+    type: Number,
+    defaultValue: 1,
+  },
+
+  scaleProbDie: {   /* min: 1, max: 35 */
+    type: Number,
+    defaultValue: 35,
+  },
+
   prob_reproduce: {
     type: Number,
     decimal: true,
     autoValue: function () {
-      return 1.02 - Math.exp(0.0002 * this.field('age').value);
+      return probReproduce(this.field('scaleProbReproduce').value, this.field('age').value);
     },
   },
 
@@ -34,7 +53,7 @@ const WorkerSchema = new SimpleSchema({
     type: Number,
     decimal: true,
     autoValue: function () {
-      return -1 + 0.05 + Math.exp(0.006 * this.field('age').value);
+      return probDie(this.field('scaleProbDie').value, this.field('age').value);
     },
   },
 

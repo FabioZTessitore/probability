@@ -12,21 +12,21 @@ const LevelSchema = new SimpleSchema({
     type: Number,
   },
 
-  stone: {
+  stone: {  /* needed to build */
     type: Number,
   },
 
-  wood: {
+  wood: {  /* needed to build */
     type: Number,
   },
 
-  prob_reproduce: {
+  changeProbReproduce: {
     type: Number,
     decimal: true,
     defaultValue: 0.0,
   },
 
-  prob_die: {
+  changeProbDie: {
     type: Number,
     decimal: true,
     defaultValue: 0.0,

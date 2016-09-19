@@ -3,19 +3,19 @@ import { Meteor } from 'meteor/meteor';
 import { Cities } from './cities.js';
 
 Meteor.methods({
-  'cities.update_wood': function (city, woodProduction) {
+  'cities.update_wood': function (city, woodQty) {
     check(this.userId, String);
     check(city, String);
-    check(woodProduction, Number);
+    check(woodQty, Number);
 
-    Cities.update(city, { $inc: { wood: woodProduction } });
+    Cities.update(city, { $inc: { wood: woodQty } });
   },
 
-  'cities.update_stone': function (city, stoneProduction) {
+  'cities.update_stone': function (city, stoneQty) {
     check(this.userId, String);
     check(city, String);
-    check(stoneProduction, Number);
+    check(stoneQty, Number);
 
-    Cities.update(city, { $inc: { stone: stoneProduction } });
+    Cities.update(city, { $inc: { stone: stoneQty } });
   },
 });
