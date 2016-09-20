@@ -12,7 +12,7 @@ Meteor.methods({
     const firstCityId = Cities.insert({ owner: userId });
     let i;
     for (i = 0; i < initialWorkers; i++) {
-      Workers.insert({ owner: userId, city: firstCityId });
+      Workers.insert({ owner: userId, city: firstCityId, role: 'Harvester' });
     }
     Buildings.insert({ city: firstCityId, type: 'City Hall', level: 0 });
   },

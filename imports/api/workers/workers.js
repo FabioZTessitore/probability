@@ -16,6 +16,10 @@ const WorkerSchema = new SimpleSchema({
     type: Number,
     defaultValue: 20,
   },
+
+  role: {
+    type: String,
+  }
 });
 
 Workers.attachSchema(WorkerSchema);
