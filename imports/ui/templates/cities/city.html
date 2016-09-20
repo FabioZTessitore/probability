@@ -2,14 +2,14 @@
   {{#with city}}
   <h1>Welcome to {{name}}</h1>
 
-  <p>There are {{workers}} workers</p>
+  <h2>Workers</h2>
+  <p>There are {{workers}} workers in this city</p>
 
-  <p>Resources are:
-    <ul>
-      <li>wood: {{wood}} (production: {{wood_production}}, storage: {{prob_storage_wood}})</li>
-      <li>stone: {{stone}} (production: {{stone_production}}, storage: {{prob_storage_stone}})</li>
-    </ul>
-  </p>
+  <h2>Resources</h2>
+  <ul>
+    <li>wood: {{woodStored}} (production: {{woodProductionQty}}, probability of production: {{woodProbProduction}}, storage decline: {{woodProbStorage}})</li>
+    <li>stone: {{stoneStored}} (production: {{stoneProductionQty}}, probability of production: {{stoneProbProduction}}, storage decline: {{stoneProbStorage}})</li>
+  </ul>
   {{/with}}
 
   <p><button class="city-hall">Upgrade City Hall</button></p>

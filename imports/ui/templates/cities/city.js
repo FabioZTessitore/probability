@@ -2,8 +2,8 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 
 import { Cities } from '../../../api/cities/cities.js';
-import { Buildings } from '../../../api/buildings/buildings.js';
-import { Levels } from '../../../api/levels/levels.js';
+//import { Buildings } from '../../../api/buildings/buildings.js';
+//import { Levels } from '../../../api/levels/levels.js';
 import { Workers } from '../../../api/workers/workers.js';
 
 import './city.html';
@@ -13,9 +13,10 @@ Template.City.onCreated(function () {
   const cityId = FlowRouter.getParam('id');
 
   _this.autorun(function () {
-    Meteor.subscribe('city', cityId);
-    Meteor.subscribe('buildings');
-    Meteor.subscribe('levels');
+    _this.subscribe('city', cityId);
+    //_this.subscribe('buildings');
+    //_this.subscribe('levels');
+    _this.subscribe('workersOfCity', cityId);
   });
 });
 
@@ -23,7 +24,11 @@ Template.City.helpers({
   city() {
     const cityId = FlowRouter.getParam('id');
     return Cities.findOne(cityId);
-  }
+  },
+
+  workers() {
+    return Workers.find().count();
+  },
 });
 
 Template.City.events({
@@ -32,7 +37,7 @@ Template.City.events({
     /* TRASFERIRE SUL SERVER GLI AGGIORNAMENTI DELLE COLLEZIONI */
     /* VEDI BUILDINGS.UPGRADE */
 
-    const cityId = FlowRouter.getParam('id');
+    /*const cityId = FlowRouter.getParam('id');
     const city = Cities.findOne(cityId);
 
     const cityHall = Buildings.findOne({ city: cityId });
@@ -57,6 +62,6 @@ Template.City.events({
       _(workers).forEach(function (worker) {
         Meteor.call('workers.updateProbReproduceDie', worker._id, level.changeProbReproduce, level.changeProbDie);
       });
-    }
+    }*/
   },
 })
