@@ -1,6 +1,7 @@
 <template name="Cities">
   <h1>Cities List</h1>
 
+  {{#if Template.subscriptionsReady}}
   <p>You have these cities:
     <ul>
       {{#each cities}}
@@ -8,4 +9,7 @@
       {{/each}}
     </ul>
   </p>
+  {{else}}
+  <p class="label label-info">Loading Data ... Please Wait</p>
+  {{/if}}
 </template>
