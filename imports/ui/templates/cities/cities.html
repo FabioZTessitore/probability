@@ -1,12 +1,10 @@
 <template name="Cities">
-  Cities List
+  <h1>Cities List</h1>
 
   <p>You have these cities:
     <ul>
       {{#each cities}}
-      <li><button class="cityname">{{name}}</button> (workers: {{workers}})<br>
-      wood: {{wood}}, wood_production: {{wood_production}}, wood_storage: {{prob_storage_wood}}<br>
-      stone: {{stone}}, stone_production: {{stone_production}}, stone_storage: {{prob_storage_stone}}</li>
+      <li><a class="cityname">{{name}}</a></li>
       {{/each}}
     </ul>
   </p>
