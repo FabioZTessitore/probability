@@ -14,3 +14,6 @@ import '../../api/levels/server/publications.js';
 
 import '../../api/buildings/methods.js';
 import '../../api/buildings/server/publications.js';
+
+import '../../api/userpoints/methods.js';
+import '../../api/userpoints/server/publications.js';
