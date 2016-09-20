@@ -6,6 +6,8 @@ import '../../api/cities/server/publications.js';
 import '../../api/workers/methods.js';
 import '../../api/workers/server/publications.js';
 
+import '../../api/reproduce-die/probabilities.js';
+
 import '../../api/levels/server/publications.js';
 
 import '../../api/buildings/methods.js';
