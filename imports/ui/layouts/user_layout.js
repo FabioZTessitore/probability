@@ -18,7 +18,7 @@ Template.UserLayout.onCreated(function () {
 Template.UserLayout.onRendered(function () {
   Meteor.setInterval(function () {
     try {
-      const workers = Workers.find().fetch();
+      /*const workers = Workers.find().fetch();
 
       _(workers).forEach(function (worker) {
         console.log(worker);
@@ -46,7 +46,7 @@ Template.UserLayout.onRendered(function () {
         } else {
           Meteor.call('workers.birthday', worker._id);
         }
-      });
+      });*/
     } catch (err) {
       console.log('please investigate if errors occour', err);
     }
