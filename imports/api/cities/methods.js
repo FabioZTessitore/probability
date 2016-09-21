@@ -8,11 +8,16 @@ Meteor.methods({
   'cities.create': function(userId) {
     check(userId, String);
 
-    const initialWorkers = 10000;
-    const firstCityId = Cities.insert({ owner: userId });
     let i;
-    for (i = 0; i < initialWorkers; i++) {
-      Workers.insert({ owner: userId, city: firstCityId, role: 'Harvester' });
+    const poolWorkers = 10000;
+    const activeWorkers = 700;
+
+    const firstCityId = Cities.insert({ owner: userId });
+    for (i = 0; i < activeWorkers; i++) {
+      Workers.insert({ owner: userId, city: firstCityId, role: 'Harvester', active: true });
+    }
+    for (i = activeWorkers; i < poolWorkers; i++) {
+      Workers.insert({ owner: userId, city: firstCityId, role: 'Harvester', active: false });
     }
     Buildings.insert({ city: firstCityId, type: 'City Hall', level: 0 });
   },

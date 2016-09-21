@@ -19,7 +19,11 @@ const WorkerSchema = new SimpleSchema({
 
   role: {
     type: String,
-  }
+  },
+
+  active: {
+    type: Boolean,
+  },
 });
 
 Workers.attachSchema(WorkerSchema);

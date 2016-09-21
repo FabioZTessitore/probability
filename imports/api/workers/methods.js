@@ -5,7 +5,7 @@ import { check } from 'meteor/check';
 import { Workers } from './workers.js';
 
 Meteor.methods({
-  'workers.insert': function (owner, city, role) {
+  /*'workers.insert': function (owner, city, role) {
     check(this.userId, String);
     check(owner, String);
     check(city, String);
@@ -18,6 +18,22 @@ Meteor.methods({
     check(workerId, String);
 
     Workers.remove(workerId);
+  },*/
+
+  'workers.activate': function (workerId, city, role) {
+    check(this.userId, String);
+    check(workerId, String);
+    check(city, String);
+    check(role, String);
+
+    Workers.update(workerId, { $set: { active: true, city, age: 20, role } });
+  },
+
+  'workers.deactivate': function (workerId) {
+    check(this.userId, String);
+    check(workerId, String);
+
+    Workers.update(workerId, { $set: { active: false } });
   },
 
   'workers.birthday': function (workerId) {
