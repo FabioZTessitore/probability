@@ -23,11 +23,14 @@ Template.City.onCreated(function () {
 Template.City.helpers({
   city() {
     const cityId = FlowRouter.getParam('id');
+    
     return Cities.findOne(cityId);
   },
 
   workers() {
-    return Workers.find().count();
+    const cityId = FlowRouter.getParam('id');
+
+    return Workers.find({ city: cityId, active: true }).count();
   },
 });
 

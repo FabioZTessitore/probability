@@ -1,8 +1,11 @@
 import { Meteor } from 'meteor/meteor';
 import { Workers } from '../workers.js';
 
-Meteor.publish('workers', function () {
-  return Workers.find({ owner: this.userId });
+Meteor.publish('workers', function (skip, limit) {
+  check(skip, Number);
+  check(limit, Number);
+
+  return Workers.find({ owner: this.userId }, { skip, limit });
 });
 
 Meteor.publish('workersOfCity', function (cityId) {

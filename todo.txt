@@ -1,0 +1,23 @@
+Tentativo corrente:
+
+OK. Costituito un pool di workers per ogni città (10.000 workers).
+
+OK. Caricare i workers a gruppi di 100 e far girare il ciclo di update sul singolo gruppo
+varie volte. Tenere traccia del numero di riproduzioni (del del role) e quando si incontra un
+worker non attivo scalare le riproduzioni.
+
+Se il gruppo è vuoto skip al prossimo.
+
+DUBBIO. Bisognerebbe disassociare l'update delle riproduzioni dall'update delle produzioni
+(piu' lento il primo), oppure stabilizzare il numero di workers
+abbassando drasticamente le percentuali di ripr e die.
+
+OK. Problema N1:
+al momento c'è una sola città e tutti i workers appartengono ad essa.
+Se voglio considerare più città come gestisco il caricamento dei gruppi?
+100 workers per città? 100 workers in totale?
+(al momento ho implementato 100 workers in totale)
+
+Problema N2:
+la lista delle riproduzioni dovrebbe essere svuotata ad intervalli
+o non riempita oltre un certo valore.
