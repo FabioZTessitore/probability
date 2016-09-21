@@ -2,7 +2,6 @@ import { Meteor } from 'meteor/meteor';
 
 import { check } from 'meteor/check';
 
-import { Cities } from '../cities/cities.js';
 import { Workers } from './workers.js';
 
 Meteor.methods({
@@ -10,18 +9,14 @@ Meteor.methods({
     check(this.userId, String);
     check(owner, String);
     check(city, String);
-    check(role, String);
 
     Workers.insert({ owner, city, role });
-    Cities.update(city, { $inc: { workers: 1 } });
   },
 
-  'workers.remove': function (workerId, city) {
+  'workers.remove': function (workerId) {
     check(this.userId, String);
     check(workerId, String);
-    check(city, String);
 
-    Cities.update(city, { $inc: { workers: -1 } });
     Workers.remove(workerId);
   },
 
@@ -30,5 +25,22 @@ Meteor.methods({
     check(workerId, String);
 
     Workers.update(workerId, { $inc: { age: 1 } });
+  },
+
+  'workers.role': function (workerId, role) {
+    check(this.userId, String);
+    check(workerId, String);
+    check(role, String);
+
+    Workers.update(workerId, { $set: { role } });
+  },
+
+  'workers.move': function (workerId, owner, city) {
+    check(this.userId, String);
+    check(workerId, String);
+    check(owner, String);
+    check(city, String);
+
+    Workers.update(workerId, { $set: { owner, city } });
   },
 });

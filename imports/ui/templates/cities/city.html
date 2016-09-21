@@ -1,0 +1,18 @@
+<template name="City">
+  {{#if Template.subscriptionsReady}}
+  {{#with city}}
+  <h1>Welcome to {{name}}</h1>
+
+  <h2>Workers</h2>
+  <p>There are {{workers}} workers in this city</p>
+
+  <h2>Resources</h2>
+  <ul>
+    <li>wood: {{woodStored}} (production: {{woodProductionQty}}, probability of production: {{woodProbProduction}}, storage decline: {{woodProbStorage}})</li>
+    <li>stone: {{stoneStored}} (production: {{stoneProductionQty}}, probability of production: {{stoneProbProduction}}, storage decline: {{stoneProbStorage}})</li>
+  </ul>
+  {{/with}}
+
+  <p><button class="city-hall">Upgrade City Hall</button></p>
+  {{/if}}
+</template>

@@ -1,18 +1,23 @@
 <template name="UserHome">
-  <h1>Welcome in Probability</h1>
+  {{#if Template.subscriptionsReady}}
+  <h1><strong>{{username}}</strong>, Welcome in Probability</h1>
 
   <p>You have these cities:
     <ul>
       {{#each cities}}
-      <li>{{name}} (workers: {{workers}})</li>
+      <li>{{name}}</li>
       {{/each}}
     </ul>
   </p>
-  <p>You have {{numberOfWorkers}} workers in your village</p>
-  <p>Actually your workers are 'harvester'.<br>
+
+  <p>When a new city is created, workers are 'harvester'.<br>
     Harvester'life is very hard.<br>
-    They have 2&#37; probability to reproduce and
-    5&#37; probability to die.</p>
-  <p>Database update your data every 5 min</p>
-  <p>You have {{points}} points</p>
+    They have few probability to reproduce and big probability to die.</p>
+
+  <p>Database updates your data every n min</p>
+
+  <p>You have {{points.points}} points. <button class="btn btn-default calculate-points {{calculating}}">Recalculate</button></p>
+  {{else}}
+    <p class="label label-info">Loading Data ... Please Wait</p>
+  {{/if}}
 </template>

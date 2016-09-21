@@ -13,40 +13,58 @@ const CitySchema = new SimpleSchema({
     defaultValue: 'New City',
   },
 
-  workers: {
-    type: Number,
-  },
-
-  wood: {
-    type: Number,
-    defaultValue: 0,
-  },
-
-  stone: {
-    type: Number,
-    defaultValue: 0,
-  },
-
-  wood_production: {
+  scaleProbReproduce: {   /* min: 1, max: 35 */
     type: Number,
     defaultValue: 1,
   },
 
-  stone_production: {
+  scaleProbDie: {   /* min: 1, max: 35 */
+    type: Number,
+    defaultValue: 25,
+  },
+
+  woodProbProduction: {
+    type: Number,
+    decimal: true,
+    defaultValue: 0.10,
+  },
+
+  stoneProbProduction: {
+    type: Number,
+    decimal: true,
+    defaultValue: 0.10,
+  },
+
+  woodStored: {
+    type: Number,
+    defaultValue: 0,
+  },
+
+  stoneStored: {
+    type: Number,
+    defaultValue: 0,
+  },
+
+  woodProductionQty: {
     type: Number,
     defaultValue: 1,
   },
 
-  prob_storage_wood: {
+  stoneProductionQty: {
     type: Number,
-    defaultValue: .50,
-    decimal: true,
+    defaultValue: 1,
   },
 
-  prob_storage_stone: {
+  woodProbStorage: {
     type: Number,
-    defaultValue: .50,
     decimal: true,
+    defaultValue: .50,
+  },
+
+  stoneProbStorage: {
+    type: Number,
+    decimal: true,
+    defaultValue: .50,
   },
 });
 
