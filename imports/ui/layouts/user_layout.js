@@ -33,7 +33,7 @@ Template.UserLayout.onRendered(function () {
   const times = 20;
   let t = 0;
 
-  let reproductions = [];
+  //let reproductions = [];
 
   Meteor.setInterval(function () {
     t += 1;
@@ -78,18 +78,19 @@ Template.UserLayout.onRendered(function () {
             }
 
             if (Math.random() < probReproduceDie.reproduce(city.scaleProbReproduce, worker.age)) {
-              reproductions.push({ city: worker.city, role: worker.role });
-              console.log('reproductions: ', reproductions.length);
+              //reproductions.push({ city: worker.city, role: worker.role });
+              //console.log('reproductions: ', reproductions.length);
+              Meteor.call('workers.activate', worker.city, worker.role);
             }
 
-            while (Workers.find({ active: false }, { skip, limit }).count() > 0 && reproductions.length > 0) {
+            /*while (Workers.find({ active: false }, { skip, limit }).count() > 0 && reproductions.length > 0) {
               const workerData = reproductions.pop();
               console.log(workerData);
               const workerSlot = Workers.findOne({ active: false }, { skip, limit });
               console.log(workerSlot);
               Meteor.call('workers.activate', workerSlot._id, workerData.city, workerData.role);
               console.log('reproductions: ', reproductions.length);
-            }
+            }*/
         });
       });
     } catch (err) {

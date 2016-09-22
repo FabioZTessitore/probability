@@ -20,13 +20,15 @@ Meteor.methods({
     Workers.remove(workerId);
   },*/
 
-  'workers.activate': function (workerId, city, role) {
+  'workers.activate': function (city, role) {
     check(this.userId, String);
-    check(workerId, String);
     check(city, String);
     check(role, String);
 
-    Workers.update(workerId, { $set: { active: true, city, age: 20, role } });
+    const worker = Workers.findOne({ active: false });
+    if (worker) {
+      Workers.update(worker._id, { $set: { active: true, city, age: 20, role } });
+    }
   },
 
   'workers.deactivate': function (workerId) {
