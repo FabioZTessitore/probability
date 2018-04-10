@@ -14,6 +14,9 @@ const routesUsers = require('./app/users.js');
 
 const app = express();
 
+app.set( 'views', path.resolve( __dirname, 'views' ) );
+app.set( 'view engine', 'ejs' );
+
 app.use('/css', express.static( path.resolve( __dirname, 'css' ) ) );
 
 mongoose.Promise = bluebird;

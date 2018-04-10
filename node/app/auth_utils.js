@@ -8,15 +8,15 @@ const utils = {
       return next();
     }
 
-    //req.flash('signupMessage', 'Le password non coincidono.')
+    req.flash('signupMessage', "Passwords don't match")
     res.redirect('/');
   },
 
-  /*
-  boolIsLoggedIn: function (req) {
-    return req.isAuthenticated();
+  notLoggedIn: function (req, res, next) {
+    if (!req.isAuthenticated()) return next();
+
+    res.redirect('/home');
   },
-  */
 
   isLoggedIn: function (req, res, next) {
     if (req.isAuthenticated()) return next();

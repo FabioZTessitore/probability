@@ -1,18 +1,5 @@
-<!doctype html>
+<% include components/header.ejs %>
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <!-- Font Awesome -->
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-
-    <title>Probability</title>
-  </head>
-  <body>
     <div class="container">
       <div class="row justify-content-lg-center mt-5">
         <div class="col-lg-6">
@@ -30,7 +17,11 @@
                   <label for="password">Password</label>
                   <input type="password" class="form-control" id="password" name="password">
                 </div>
-
+                <% if (message.length > 0) { %>
+                <div class="form-group">
+                  <div class="alert alert-danger"><%= message %></div>
+                </div>
+                <% } %>
                 <button class="btn btn-primary btn-block" type="submit">Sign In</button>
               </form>
             </div>
@@ -43,5 +34,5 @@
         </div>
       </div>
     </div>
-  </body>
-</html>
+
+<% include components/footer.ejs %>

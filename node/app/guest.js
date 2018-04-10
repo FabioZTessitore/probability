@@ -1,5 +1,4 @@
 const express = require('express');
-const path = require('path');
 
 const router = express.Router();
 
@@ -13,28 +12,17 @@ module.exports = function () {
   // reach these pages
 
   // Landing Page (with Sign Up form)
-  router.get('/', function (req, res) {
-    res.sendFile( path.resolve( __dirname, '..', 'public', 'index.html' ) );
+  router.get('/', authUtils.notLoggedIn, function (req, res) {
+    res.render('index', {
+      message: req.flash('signupMessage'),
+    });
   });
 
   // Sign In Page
-  router.get('/signin', function (req, res) {
-    /*
-    const loggedIn = authUtils.boolIsLoggedIn(req);
-    
-    if (loggedIn) {
-      res.redirect('/home');
-      return;
-    }
-    */
-    res.sendFile( path.resolve( __dirname, '..', 'public', 'signin.html' ) );
-    /*
-    res.render('signin.ejs', {
-      login: loggedIn,
+  router.get('/signin', authUtils.notLoggedIn, function (req, res) {
+    res.render('signin', {
       message: req.flash('loginMessage'),
-      role: authUtils.role(req),
     });
-    */
   });
 
   return router;
