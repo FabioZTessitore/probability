@@ -9,13 +9,15 @@ const bluebird = require('bluebird');
 const flash = require('connect-flash');
 
 const routesGuest = require('./app/guest.js');
+const routesLogin = require('./app/login.js');
+const routesUsers = require('./app/users.js');
 
 const app = express();
 
 app.use('/css', express.static( path.resolve( __dirname, 'css' ) ) );
 
 mongoose.Promise = bluebird;
-mongoose.connect('mongodb://127.0.0.1:32768', function (err) {
+mongoose.connect('mongodb://127.0.0.1:32768/probability', function (err) {
   if (err) {
     process.exit(1);
   }
@@ -39,6 +41,8 @@ app.use( flash() );
 require( path.resolve( __dirname, 'config', 'passport.js' ) )(passport);
 
 app.use( routesGuest() );
+app.use( routesLogin(passport) );
+app.use( routesUsers() );
 
 app.use( function (req, res) {
   res.status(404);

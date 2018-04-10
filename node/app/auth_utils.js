@@ -1,19 +1,22 @@
 const utils = {
-  /*
+
   checkPassword: function (req, res, next) {
     const passwd1 = req.body.password;
     const passwd2 = req.body.password2;
+
     if (passwd1 === passwd2) {
       return next();
     }
 
-    req.flash('signupMessage', 'Le password non coincidono.')
-    res.redirect('/app/signup');
+    //req.flash('signupMessage', 'Le password non coincidono.')
+    res.redirect('/');
   },
 
+  /*
   boolIsLoggedIn: function (req) {
     return req.isAuthenticated();
   },
+  */
 
   isLoggedIn: function (req, res, next) {
     if (req.isAuthenticated()) return next();
@@ -21,6 +24,7 @@ const utils = {
     res.redirect('/');
   },
 
+  /*
   boolIsAdmin: function (req) {
     return req.isAuthenticated() && req.user.role==='admin';
   },

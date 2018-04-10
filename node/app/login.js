@@ -7,15 +7,15 @@ module.exports = function (passport) {
 
   // signin request
   router.post('/signin', passport.authenticate('local-login', {
-    successRedirect: '/app/userhome',
-    failureRedirect: '/app/signin',
+    successRedirect: '/home',
+    failureRedirect: '/signin',
     failureFlash: true
   }));
 
   // signup request
   router.post('/signup', authUtils.checkPassword, passport.authenticate('local-signup', {
-    successRedirect: '/app/userhome',
-    failureRedirect: '/app/signup',
+    successRedirect: '/home',
+    failureRedirect: '/',
     failureFlash: true,
   }));
 
