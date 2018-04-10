@@ -1,0 +1,19 @@
+<template name="UserHome">
+  <h1><strong>{{username}}</strong>, Welcome in Probability</h1>
+
+  <p>You have these cities:
+    <ul>
+      {{#each cities}}
+      <li>{{name}}</li>
+      {{/each}}
+    </ul>
+  </p>
+
+  <p>When a new city is created, workers are 'harvester'.<br>
+    Harvester'life is very hard.<br>
+    They have few probability to reproduce and big probability to die.</p>
+
+  <p>Database updates your data every n min</p>
+
+  <p>You have {{points.points}} points. <button class="btn btn-default calculate-points {{calculating}}">Recalculate</button></p>
+</template>
