@@ -28,6 +28,7 @@ const utils = {
   boolIsAdmin: function (req) {
     return req.isAuthenticated() && req.user.role==='admin';
   },
+  */
 
   isAdmin: function (req, res, next) {
     if (req.isAuthenticated() && req.user.role==='admin') return next();
@@ -35,11 +36,11 @@ const utils = {
     res.redirect('/');
   },
 
-  role: function (req, res) {
-    if (!this.boolIsLoggedIn(req)) return "guest";
+  role: function (req) {
+    if (!req.isAuthenticated()) return "guest";
+
     return req.user.role;
   },
-  */
 
   /*
   checkLevel: function (req, res, next) {

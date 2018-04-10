@@ -11,6 +11,7 @@ const flash = require('connect-flash');
 const routesGuest = require('./app/guest.js');
 const routesLogin = require('./app/login.js');
 const routesUsers = require('./app/users.js');
+const routesAdmin = require('./app/admin.js');
 
 const app = express();
 
@@ -46,6 +47,7 @@ require( path.resolve( __dirname, 'config', 'passport.js' ) )(passport);
 app.use( routesGuest() );
 app.use( routesLogin(passport) );
 app.use( routesUsers() );
+app.use( routesAdmin() );
 
 app.use( function (req, res) {
   res.status(404);
