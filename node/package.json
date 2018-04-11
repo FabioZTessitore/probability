@@ -1,6 +1,6 @@
 {
   "name": "probability",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "A Game Based on Probability",
   "main": "index.js",
   "scripts": {
