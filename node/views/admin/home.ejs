@@ -1,0 +1,73 @@
+<% include ../components/header.ejs %>
+
+<div class="container">
+
+<h1>Admin</h1>
+<p><a class="" href="/logout">Logout</a></p>
+
+  <!-- errori -->
+  <div class="row mt-5 alert alert-danger invisible" id="error">
+  </div>
+
+  <!-- crea nuova mappa -->
+  <div class="row justify-content-center">
+    <div class="col-lg-6">
+      <form action="#" id="create-map-form">
+        <div class="form-group">
+          <label for="mapname">Map Name</label>
+          <input type="text" class="form-control" name="mapname" id="mapname">
+        </div>
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label for="mapwidth">Width</label>
+            <input type="number" class="form-control" name="mapwidth" id="mapwidth">
+          </div>
+          <div class="form-group col-6">
+            <label for="mapheight">Height</label>
+            <input type="number" class="form-control" name="mapheight" id="mapheight">
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="submit" class="btn btn-primary btn-block" id="create-map-btn">
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- visualizza mappe -->
+  <div class="row">
+  </div>
+</div>
+
+<% include ../components/footer.ejs %>
+
+<script>
+$(document).ready( function () {
+  var createMapForm = $('#create-map-form');
+
+  createMapForm.on('submit', function (e) {
+    e.preventDefault();
+
+    var mapName = $('#mapname').val();
+    var mapWidth = $('#mapwidth').val();
+    var mapHeight = $('#mapheight').val();
+
+    if (!mapName || !mapWidth || !mapHeight) {
+      Error('#error', 'All data are required');
+      return;
+    }
+
+    $.post('/create-map', {
+      mapName: mapName,
+      mapWidth: mapWidth,
+      mapHeight: mapHeight
+    }).done(function (data) {
+      if (!data.success) {
+        Error('#error', data.message);
+      }
+    }).fail(function (data) {
+      console.log('data', data);
+    });
+  });
+});
+</script>

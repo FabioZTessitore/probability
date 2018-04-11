@@ -19,6 +19,7 @@ app.set( 'views', path.resolve( __dirname, 'views' ) );
 app.set( 'view engine', 'ejs' );
 
 app.use('/css', express.static( path.resolve( __dirname, 'css' ) ) );
+app.use('/js', express.static( path.resolve( __dirname, 'js' ) ) );
 
 mongoose.Promise = bluebird;
 mongoose.connect('mongodb://127.0.0.1:32768/probability', function (err) {

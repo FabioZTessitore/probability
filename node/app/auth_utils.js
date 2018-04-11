@@ -8,7 +8,7 @@ const utils = {
       return next();
     }
 
-    req.flash('signupMessage', "Passwords don't match")
+    req.flash('signupMessage', "Passwords don't match");
     res.redirect('/');
   },
 
