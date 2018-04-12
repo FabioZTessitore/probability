@@ -6,7 +6,7 @@ const authUtils = require('./auth_utils');
 module.exports = function (passport) {
 
   // signin request
-  router.post('/signin', passport.authenticate('local-login', {
+  router.post('/signin', authUtils.checkEmail, passport.authenticate('local-login', {
     successRedirect: '/home',
     failureRedirect: '/signin',
     failureFlash: true

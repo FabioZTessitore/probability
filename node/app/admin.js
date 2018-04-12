@@ -9,7 +9,6 @@ module.exports = function () {
 
   router.get('/admin', authUtils.isAdmin, function (req, res) {
     Map.find().sort({ name: 1 }).exec( function (err, result) {
-      console.log(result);
       res.render('admin/home', {
         maps: result
       });

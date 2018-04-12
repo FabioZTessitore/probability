@@ -12,6 +12,12 @@ const utils = {
     res.redirect('/');
   },
 
+  checkEmail: function (req, res, next) {
+    // controllare se e' veramente una email
+    // req.body.email
+    return next();
+  },
+
   notLoggedIn: function (req, res, next) {
     if (!req.isAuthenticated()) return next();
 

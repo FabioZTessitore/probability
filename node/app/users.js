@@ -1,5 +1,5 @@
 const express = require('express');
-const path = require('path');
+const Map = require('./models/map');
 
 const router = express.Router();
 
@@ -13,9 +13,12 @@ module.exports = function () {
       return;
     }
 
-    res.sendFile( path.resolve( __dirname, '..', 'public', 'home.html' ) );
+    Map.find().sort({ name: 1 }).exec( function (err, result) {
+      res.render('users/home', {
+        maps: result
+      });
+    });
   });
-
 
   return router;
 };
