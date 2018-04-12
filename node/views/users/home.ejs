@@ -15,6 +15,7 @@
       <ul class="list-group">
         <% maps.forEach( function(map) { %>
         <li class="list-group-item">
+          <a href="/home/<%= map._id %>">
           <span class=""><%= map.name %></span>
           <span class="">(<%= map.width %>)</span>
           <span class="">(<%= map.height %>)</span>

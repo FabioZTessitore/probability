@@ -20,5 +20,9 @@ module.exports = function () {
     });
   });
 
+  router.get('/home/:mapId', authUtils.isLoggedIn, function (req, res) {
+      res.render('users/map');
+  });
+
   return router;
 };
