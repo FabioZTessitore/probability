@@ -1,0 +1,171 @@
+<% include ../components/header.ejs %>
+
+<div class="container" id="page">
+
+<h1>User (credits: <%= credits %>)</h1>
+<p><a class="" href="/logout">Logout</a></p>
+
+  <!-- errori -->
+  <div class="row mt-5 alert alert-danger d-none" id="error">
+  </div>
+
+  <div id="current-map" class="d-none">
+    <!-- visualizza scenario mappa -->
+    <div class="row">
+      <p><button class="btn btn-secondary" id="go-maps">Maps</button></p>
+      <h1>Current Map:</h1>
+      <h1 id="map-name"></h1>
+      <h1 id="map-id"></h1>
+    </div>
+
+    <!-- crea nuova citta' -->
+    <div class="row justify-content-center" id="new-city">
+      <div class="col-lg-6">
+        <form action="#" id="create-city-form">
+          <div class="form-group">
+            <label for="cityname">City Name</label>
+            <input type="text" class="form-control" name="cityname" id="cityname">
+          </div>
+          <div class="form-row">
+          </div>
+          <div class="form-group">
+            <input type="submit" class="btn btn-primary btn-block" id="create-city-btn">
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- lista citta' -->
+    <div class="row">
+      <ul class="list-group" id="cities">
+      </ul>
+    </div>
+  </div>
+
+  <!-- visualizza lista mappe -->
+  <!-- non deve piu' essere caricato nel template!!! -->
+  <div class="row" id="maps-list">
+    <div class="col-lg-12">
+      <ul class="list-group" id="maps">
+        <% maps.forEach( function(map) { %>
+        <li class="list-group-item" data-map="<%= map._id %>" style="cursor: pointer">
+          <!--
+          <a href="/map/<%= map._id %>">
+          -->
+          <span class=""><%= map.name %></span>
+          <span class="">(<%= map.width %>)</span>
+          <span class="">(<%= map.height %>)</span>
+          <!--
+          </a>
+          -->
+        </li>
+        <% }); %>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<% include ../components/footer.ejs %>
+
+<script>
+$(document).ready( function () {
+
+  var game = {};
+
+  game.user = {};
+  game.user.credits = <%= credits %>;
+
+  game.map = {};
+
+  game.cities = [];
+
+  console.log(game);
+
+  $('#current-map').hide().removeClass('d-none');
+
+  $('#current-map').on('newMap', function (e, data) {
+    $('#map-name').text(data.name);
+    $('#map-id').text(data._id);
+    $(this).fadeIn();
+  });
+
+  $('#maps-list').on('newMap', function (e, data) {
+    $(this).fadeOut( function () {
+      $('#current-map').trigger('newMap', data);
+      $('#current-map').trigger('loadCities');
+    });
+  });
+
+  $('#current-map').on('mapsList', function (e) {
+    $(this).fadeOut( function () {
+      $('#maps-list').trigger('mapsList');
+    });
+  });
+
+  $('#current-map').on('loadCities', function (e) {
+    $.get('/cities/'+game.map._id)
+      .done( function (data) {
+
+        var cities = $('#cities');
+        cities.empty();
+
+        data.forEach( function (city) {
+          var li = $('<li>', { class: 'list-group-item' }).text(city.name);
+          cities.append(li);
+        });
+      });
+  });
+
+  $('#maps-list').on('mapsList', function (e) {
+    $(this).show();
+  });
+
+  $('#maps').on('click', 'li', function (e) {
+    var $this = $(this);
+    var $mapId = $this.data('map');
+    $.get('/map/'+$mapId)
+      .done( function (data) {
+        //console.log(data);
+        game.map = data;
+        // var map = new Map(data);
+        $('#maps-list').trigger('newMap', data);
+      });
+  });
+
+  $('#go-maps').on('click', function (e) {
+    $('#current-map').trigger('mapsList');
+  });
+
+  $('#create-city-form').on('submit', function (e) {
+    e.preventDefault();
+
+    var cityName = $('#cityname');
+
+    $.post('/create-city', {
+      mapId: game.map._id,
+      cityName: cityName.val()
+    }).done(function (data) {
+      if (!data.success) {
+        Error('#error', data.message);
+        return;
+      }
+
+      var city = {
+        id: data.id,
+        name: cityName.val(),
+        mapId: game.map._id
+      };
+      game.cities.push(city);
+      game.user.credits = data.credits;
+
+      cityName.val('');
+
+      console.log(game);
+    }).fail(function (data) {
+      console.log('data', data);
+    });
+
+  });
+});
+</script>
+

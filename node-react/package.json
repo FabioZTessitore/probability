@@ -1,0 +1,27 @@
+{
+  "name": "probability",
+  "version": "0.0.1",
+  "description": "A Game Based on Probability",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Fabio Z Tessitore (@FabioZTessitore)",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.18.2",
+    "connect-flash": "^0.1.1",
+    "ejs": "^2.5.8",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "helmet": "^3.12.0",
+    "mongoose": "^5.0.14",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "path": "^0.12.7"
+  }
+}
