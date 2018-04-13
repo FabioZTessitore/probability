@@ -1,4 +1,5 @@
 const express = require('express');
+const User = require('./models/user');
 const Map = require('./models/map');
 
 const router = express.Router();
@@ -15,9 +16,11 @@ module.exports = function () {
 
     Map.find().sort({ name: 1 }).exec( function (err, result) {
       res.render('users/home', {
+        credits: req.user.credits,
         maps: result
       });
     });
+
   });
 
   router.get('/map/:mapId', authUtils.isLoggedIn, function (req, res) {

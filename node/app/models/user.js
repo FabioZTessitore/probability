@@ -10,6 +10,7 @@ const userSchema = new mongoose.Schema({
   },
 
   role: { type: String, defaultValue: 'user' },
+  credits: { type: Number, defaultValue: 100 },
 });
 
 userSchema.methods.generateHash = function (password) {

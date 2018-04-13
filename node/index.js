@@ -12,6 +12,7 @@ const routesGuest = require('./app/guest.js');
 const routesLogin = require('./app/login.js');
 const routesUsers = require('./app/users.js');
 const routesAdmin = require('./app/admin.js');
+const routesGame = require('./app/game.js');
 
 const app = express();
 
@@ -49,6 +50,7 @@ app.use( routesGuest() );
 app.use( routesLogin(passport) );
 app.use( routesUsers() );
 app.use( routesAdmin() );
+app.use( routesGame() );
 
 app.use( function (req, res) {
   res.status(404);
