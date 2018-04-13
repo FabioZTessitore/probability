@@ -1,24 +1,37 @@
 <% include ../components/header.ejs %>
 
-<div class="container">
+<div class="container" id="page">
 
 <h1>User</h1>
 <p><a class="" href="/logout">Logout</a></p>
 
   <!-- errori -->
-  <div class="row mt-5 alert alert-danger invisible" id="error">
+  <div class="row mt-5 alert alert-danger d-none" id="error">
   </div>
 
-  <!-- visualizza mappe -->
-  <div class="row">
+  <!-- visualizza scenario mappa -->
+  <div class="row d-none" id="current-map">
+    <button class="btn btn-secondary" id="go-maps">Maps</button>
+    <h1>Current Map:</h1>
+    <h1 id="map-name"></h1>
+    <h1 id="map-id"></h1>
+  </div>
+
+  <!-- visualizza lista mappe -->
+  <div class="row" id="maps-list">
     <div class="col-lg-12">
-      <ul class="list-group">
+      <ul class="list-group" id="maps">
         <% maps.forEach( function(map) { %>
-        <li class="list-group-item">
-          <a href="/home/<%= map._id %>">
+        <li class="list-group-item" data-map="<%= map._id %>" style="cursor: pointer">
+          <!--
+          <a href="/map/<%= map._id %>">
+          -->
           <span class=""><%= map.name %></span>
           <span class="">(<%= map.width %>)</span>
           <span class="">(<%= map.height %>)</span>
+          <!--
+          </a>
+          -->
         </li>
         <% }); %>
       </ul>
@@ -30,6 +43,65 @@
 
 <script>
 $(document).ready( function () {
+
+  $('#current-map').hide().removeClass('d-none');
+
+  $('#current-map').on('newMap', function (e, data) {
+    $('#map-name').text(data.name);
+    $('#map-id').text(data._id);
+    $(this).fadeIn();
+  });
+
+  $('#current-map').on('mapsList', function (e) {
+    $(this).fadeOut( function () {
+      $('#maps-list').trigger('mapsList');
+    });
+  });
+
+  $('#maps-list').on('newMap', function (e, data) {
+    $(this).fadeOut( function () {
+      $('#current-map').trigger('newMap', data);
+    });
+  });
+
+  $('#maps-list').on('mapsList', function (e) {
+    $(this).fadeIn();
+  });
+
+
+
+/*
+  $('#page').on('mapsList', function (e) {
+
+    $('#current-map').fadeOut( function () {
+      $('#maps-list').fadeIn();
+    });
+  });
+
+  $('#page').on('newMap', function (e, data) {
+    console.log(data);
+    $('#map-name').text(data.name);
+    $('#map-id').text(data._id);
+    $('#maps-list').fadeOut( function () {
+      $('#current-map').hide().removeClass('d-none').fadeIn();
+    });
+  });
+*/
+
+  $('#maps').on('click', 'li', function (e) {
+    var $this = $(this);
+    var $mapId = $this.data('map');
+    $.get('/map/'+$mapId)
+      .done( function (data) {
+        //console.log(data);
+        // var map = new Map(data);
+        $('#maps-list').trigger('newMap', data);
+      });
+  });
+
+  $('#go-maps').on('click', function (e) {
+    $('#current-map').trigger('mapsList');
+  });
 });
 </script>
 

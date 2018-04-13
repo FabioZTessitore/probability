@@ -20,8 +20,10 @@ module.exports = function () {
     });
   });
 
-  router.get('/home/:mapId', authUtils.isLoggedIn, function (req, res) {
-      res.render('users/map');
+  router.get('/map/:mapId', authUtils.isLoggedIn, function (req, res) {
+    Map.findOne({ _id: req.params.mapId }).exec( function (err, result) {
+      res.json(result);
+    });
   });
 
   return router;
