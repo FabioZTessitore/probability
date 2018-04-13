@@ -1,6 +1,7 @@
 const express = require('express');
 const User = require('./models/user');
 const Map = require('./models/map');
+const City = require('./models/city');
 
 const router = express.Router();
 
@@ -25,6 +26,12 @@ module.exports = function () {
 
   router.get('/map/:mapId', authUtils.isLoggedIn, function (req, res) {
     Map.findOne({ _id: req.params.mapId }).exec( function (err, result) {
+      res.json(result);
+    });
+  });
+
+  router.get('/cities/:mapId', authUtils.isLoggedIn, function (req, res) {
+    City.find({ mapId: req.params.mapId }).sort({ name: 1 }).exec( function (err, result) {
       res.json(result);
     });
   });
