@@ -22,7 +22,7 @@ module.exports = function (passport) {
       if (err) return done(err);
 
       if (user)
-        return done(null, false, req.flash('signupMessage', 'Email already used'));
+        return done(null, false, null);
 
       var newUser = new User();
       newUser.local.email = email;
@@ -48,11 +48,11 @@ module.exports = function (passport) {
       }
 
       if (!user) {
-        return done(null, false, req.flash('loginMessage', 'Invalid email or password'));
+        return done(null, false, null);
       }
 
       if (!user.validPassword(password)) {
-        return done(null, false, req.flash('loginMessage', 'Invalid email or password'));
+        return done(null, false, null);
       }
 
       return done(null, user);

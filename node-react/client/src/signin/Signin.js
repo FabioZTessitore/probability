@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 
 class SignIn extends Component {
   constructor (props) {
@@ -16,18 +15,15 @@ class SignIn extends Component {
   signin(e) {
     e.preventDefault();
 
-    const instance = axios.create({
-      proxy: {
-        host: '127.0.0.1',
-        port: 3001
-      }
-    });
-
-    instance.post('/signin', {
-      "email": e.target.email.value,
-      "password": e.target.password.value
+    fetch('/signin', {
+      method: 'post',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        email: e.target.email.value,
+        password: e.target.password.value
+      })
     }).then( function (result) {
-      console.log(result);
+      console.log(result.json());
     }).catch( function (err) {
       console.log(err);
     });
