@@ -1,14 +1,36 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class SignIn extends Component {
   constructor (props) {
     super (props);
 
     this.changePage = this.changePage.bind(this);
+    this.signin = this.signin.bind(this);
   }
 
   changePage () {
     this.props.changePage('landing');
+  }
+
+  signin(e) {
+    e.preventDefault();
+
+    const instance = axios.create({
+      proxy: {
+        host: '127.0.0.1',
+        port: 3001
+      }
+    });
+
+    instance.post('/signin', {
+      "email": e.target.email.value,
+      "password": e.target.password.value
+    }).then( function (result) {
+      console.log(result);
+    }).catch( function (err) {
+      console.log(err);
+    });
   }
 
   render() {
@@ -21,7 +43,7 @@ class SignIn extends Component {
                 <h4 className="text-center">Sign in to Probability</h4>
               </div>
               <div className="card-body">
-                <form action="/signin" method="post">
+                <form onSubmit={this.signin}>
                   <div className="form-group">
                     <label htmlFor="email">Email address</label>
                     <input type="email" className="form-control" id="email" name="email" />
