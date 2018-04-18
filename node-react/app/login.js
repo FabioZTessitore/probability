@@ -18,13 +18,34 @@ module.exports = function (passport) {
   
 
   // signup request
-  router.post('/signup', authUtils.checkPassword, function (req, res, next) {
-    passport.authenticate('local-signup', function (err, user, info) {
-      console.log('err', err);
-      console.log('user', user);
-      console.log('info', info);
+  router.post('/signup', authUtils.checkEmail, authUtils.checkPassword, function (req, res, next) {
+    console.log('body', req.body);
 
-      res.json({"success": false});
+    passport.authenticate('local-signup', function (err, user, info) {
+
+      console.log(err);
+      console.log(user);
+      console.log(info);
+
+      if (err) {
+        res.json({
+          success: false,
+          message: 'Fatal Error'
+        });
+        return;
+      }
+
+      if (!user) {
+        res.json({
+          success: false,
+          message: 'Email already in use'
+        });
+        return;
+      }
+
+      res.json({
+        success: true
+      });
     })(req, res, next);
   });
 

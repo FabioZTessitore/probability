@@ -1,6 +1,9 @@
+const validator = require('email-validator');
+
 const utils = {
 
   checkPassword: function (req, res, next) {
+    console.log('chekcPassword', req.body);
     const passwd1 = req.body.password;
     const passwd2 = req.body.password2;
 
@@ -13,9 +16,11 @@ const utils = {
   },
 
   checkEmail: function (req, res, next) {
-    // controllare se e' veramente una email
-    // req.body.email
-    return next();
+    console.log('checkEmail', req.body);
+
+    if ( validator.validate(req.body.email) ) return next();
+
+    res.redirect('/');
   },
 
   notLoggedIn: function (req, res, next) {

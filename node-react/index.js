@@ -23,8 +23,8 @@ mongoose.connect('mongodb://127.0.0.1:32768/probability', function (err) {
 
 app.use( helmet() );
 
-app.use( bodyParser.json() );
 app.use( bodyParser.urlencoded( { extended: false } ) );
+app.use( bodyParser.json() );
 
 app.use( session({
   secret: 'lDfwEiluFowj48rowroEjFiweruoicHur2hr2',
@@ -45,7 +45,6 @@ app.use( function (req, res) {
 });
 /*
 
-const routesGuest = require('./app/guest.js');
 const routesUsers = require('./app/users.js');
 const routesAdmin = require('./app/admin.js');
 const routesGame = require('./app/game.js');
@@ -56,7 +55,6 @@ app.set( 'view engine', 'ejs' );
 app.use('/css', express.static( path.resolve( __dirname, 'css' ) ) );
 app.use('/js', express.static( path.resolve( __dirname, 'js' ) ) );
 
-app.use( routesGuest() );
 app.use( routesUsers() );
 app.use( routesAdmin() );
 app.use( routesGame() );

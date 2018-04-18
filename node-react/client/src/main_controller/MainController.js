@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Landing from '../landing/Landing';
 import SignIn from '../signin/Signin';
+import Home from '../home/Home';
 
 class MainController extends Component {
   constructor (props) {
@@ -34,6 +35,8 @@ class MainController extends Component {
       return (
         <SignIn changePage={this.changePage} />
       );
+    } else if (this.state.page === 'home') {
+      return <Home changePage={this.changePage} />;
     }
   }
 }

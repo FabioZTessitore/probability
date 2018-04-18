@@ -1,14 +1,53 @@
 import React, { Component } from 'react';
+import Error from '../error/Error';
 
 class Landing extends Component {
   constructor (props) {
     super (props);
 
+    this.state = {
+      errorMessage: ''
+    };
+
     this.changePage = this.changePage.bind(this);
+    this.goSignin = this.goSignin.bind(this);
+    this.registerUser = this.registerUser.bind(this);
   }
 
-  changePage () {
-    this.props.changePage('signin');
+  changePage (page) {
+    this.props.changePage(page);
+  }
+
+  goSignin() {
+    this.changePage('signin');
+  }
+
+  registerUser(e) {
+    e.preventDefault();
+
+    const _this = this;
+
+    fetch('/signup', {
+      method: 'POST',
+      dataType: 'json',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        "email": e.target.email.value,
+        "password": e.target.password.value,
+        "password2": e.target.password2.value
+      })
+    }).then(res => res.json())
+      .then( function (result) {
+        if (result.success === false) {
+          _this.setState({
+            errorMessage: result.message
+          });
+          return;
+        }
+        _this.changePage('home');
+    }).catch( function (err) {
+      console.log(err);
+    });
   }
 
   render() {
@@ -22,13 +61,13 @@ class Landing extends Component {
             <h4><i className="fa fa-code"></i> with <i className="fa fa-coffee"></i> and <i className="fa fa-heart"></i></h4>
             <h5>by <a href="https://github.com/FabioZTessitore">@FabioZTessitore</a></h5>
 
-            <h4 className="mt-5"><button className="btn btn-success btn" onClick={this.changePage}>Start Playing</button></h4>
+            <h4 className="mt-5"><button className="btn btn-success btn" onClick={this.goSignin}>Start Playing</button></h4>
           </div>
 
           <div className="col-lg-6">
             <div className="card">
               <div className="card-body">
-                <form action="/signup" method="post">
+                <form onSubmit={this.registerUser}>
                   <div className="form-group">
                     <label htmlFor="email">Email</label>
                     <input type="email" className="form-control" id="email" name="email" placeholder="you@example.com" />
@@ -42,10 +81,9 @@ class Landing extends Component {
                     <input type="password" className="form-control" id="password2" name="password2" placeholder="Please repeat the password" />
                   </div>
 
-                  <div className="form-group">
-                    <div className="alert alert-danger">message</div>
-                  </div>
-      
+                  <p>{this.state.errorMessage}</p>
+                  <Error message={this.state.errorMessage} />
+
                   <button className="btn btn-primary btn-block" type="submit">Sign Up for Probability</button>
                 </form>
               </div>
